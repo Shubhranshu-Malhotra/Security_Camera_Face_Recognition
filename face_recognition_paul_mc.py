@@ -33,7 +33,9 @@ test_image = cv2.cvtColor(test_image, cv2.COLOR_RGB2BGR)
 
 for (top, right, bottom, left), face_encoding in zip(test_face_positions, all_test_encodings):
     name = 'Unknown'
+    print(len(face_encoding), len(Encodings[0]), len(Encodings))
     matches = fr.compare_faces(Encodings, face_encoding)
+    print(matches, len(matches))
     if True in matches:
         first_match_index = matches.index(True)
         name = Names[first_match_index]
