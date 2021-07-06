@@ -1,10 +1,10 @@
 import face_recognition as fr
 import cv2
-print("Opencv version: ", cv2.__version__)
+print("OpenCV version: ", cv2.__version__)
 print("Imports Successful!!")
 
 # Load image to find face in
-temp_img = fr.load_image_file("D:\Projects\security_camera_face_recognition\Security_Camera_Face_Recognition\paul_mcwhorter_images\known\Chase.jpg")
+temp_img = fr.load_image_file("D:\Projects\security_camera_face_recognition\Security_Camera_Face_Recognition\paul_mcwhorter_images\known\Donald Trump.jpg")
 
 # Find the location of the faces using face_recognition
 face_locs = fr.face_locations(temp_img)
