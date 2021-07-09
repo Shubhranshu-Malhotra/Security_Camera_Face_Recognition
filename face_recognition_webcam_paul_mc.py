@@ -11,9 +11,11 @@ Names=[]
 with open('train.pkl','rb') as f:
     Names=pickle.load(f)
     Encodings=pickle.load(f)
+print(len(Encodings))
+print(Names, len(Names))
 font=cv2.FONT_HERSHEY_SIMPLEX
  
-cam= cv2.VideoCapture(1)
+cam= cv2.VideoCapture(0)
  
 while True:
  
