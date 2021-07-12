@@ -25,11 +25,36 @@ subtype = 0
 cam = cv2.VideoCapture(f'rtsp://{username}:{password}@{ip}:554/cam/realmonitor?channel={channel}&subtype={subtype}')
 print('Is the IP camera turned on: {}'.format(cam.isOpened()))
 
+print("CV_CAP_PROP_FRAME_WIDTH: '{}'".format(cam.get(cv2.CAP_PROP_FRAME_WIDTH))) 
+
+print("CV_CAP_PROP_FRAME_HEIGHT : '{}'".format(cam.get(cv2.CAP_PROP_FRAME_HEIGHT))) 
+
+print("CAP_PROP_FPS : '{}'".format(cam.get(cv2.CAP_PROP_FPS))) 
+
+print("CAP_PROP_POS_MSEC : '{}'".format(cam.get(cv2.CAP_PROP_POS_MSEC))) 
+
+print("CAP_PROP_FRAME_COUNT  : '{}'".format(cam.get(cv2.CAP_PROP_FRAME_COUNT))) 
+
+print("CAP_PROP_BRIGHTNESS : '{}'".format(cam.get(cv2.CAP_PROP_BRIGHTNESS))) 
+
+print("CAP_PROP_CONTRAST : '{}'".format(cam.get(cv2.CAP_PROP_CONTRAST))) 
+
+print("CAP_PROP_SATURATION : '{}'".format(cam.get(cv2.CAP_PROP_SATURATION))) 
+
+print("CAP_PROP_HUE : '{}'".format(cam.get(cv2.CAP_PROP_HUE))) 
+
+print("CAP_PROP_GAIN  : '{}'".format(cam.get(cv2.CAP_PROP_GAIN))) 
+
+print("CAP_PROP_CONVERT_RGB : '{}'".format(cam.get(cv2.CAP_PROP_CONVERT_RGB)))
+
+# exit()
+
 while True:
- 
+
     _,frame=cam.read()
-    frameSmall=cv2.resize(frame,(0,0),fx=0.75,fy=0.75)
+    frameSmall=cv2.resize(frame,(0,0),fx=1,fy=1)
     frameRGB=cv2.cvtColor(frameSmall,cv2.COLOR_BGR2RGB)
+    # frameRGB = frameSmall
     facePositions=face_recognition.face_locations(frameRGB,model='cnn')
     allEncodings=face_recognition.face_encodings(frameRGB,facePositions)
     for (top,right,bottom,left),face_encoding in zip(facePositions,allEncodings):
