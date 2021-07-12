@@ -4,14 +4,16 @@ import time
 print("imports successful!!")
 
 # download the cascade
-url = "https://raw.githubusercontent.com/opencv/opencv/master/data/haarcascades/haarcascade_frontalface_default.xml"
+# url = "https://raw.githubusercontent.com/opencv/opencv/master/data/haarcascades/haarcascade_frontalface_default.xml"
 
 # wget.download(url)
 
 # Load cascade
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
+
 # Capture video from security cam. 
+# cam = cv2.VideoCapture(0)
 ip = "***.***.***.***"
 username = "***"
 password = "******"
