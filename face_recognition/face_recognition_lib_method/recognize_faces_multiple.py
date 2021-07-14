@@ -4,6 +4,7 @@ import argparse
 import pickle
 import cv2
 import random
+import os
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
 ap.add_argument("-e", "--encodings", required=True,
