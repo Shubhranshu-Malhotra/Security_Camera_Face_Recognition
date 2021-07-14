@@ -54,3 +54,6 @@ data = {"encodings": knownEncodings, "names": knownNames}
 f = open(args["encodings"], "wb")
 f.write(pickle.dumps(data))
 f.close()
+
+# Run the following command in cmd
+# python encode_faces.py --dataset dataset --encodings encodings.pickle --detection-method "<hog or cnn>"
