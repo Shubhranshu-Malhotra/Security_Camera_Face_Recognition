@@ -7,8 +7,8 @@ import pickle
 import cv2
 import os
 import wget
-print("Imports Successful !!")
 
+print("Imports Successful !!")
 
 # # Download face detector model and weights
 # url_architecture = "https://raw.githubusercontent.com/opencv/opencv/master/samples/dnn/face_detector/deploy.prototxt"
@@ -16,7 +16,6 @@ print("Imports Successful !!")
 # wget.download(url_architecture, r"D:\Projects\security_camera_face_recognition\Security_Camera_Face_Recognition\Face Recognition\OpenCV_SVM_OpenFace\face_detection_model")
 # wget.download(url_weights, r"D:\Projects\security_camera_face_recognition\Security_Camera_Face_Recognition\Face Recognition\OpenCV_SVM_OpenFace\face_detection_model")
 # print("Download successful !!")
-
 
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
