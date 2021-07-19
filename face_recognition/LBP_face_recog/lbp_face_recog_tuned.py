@@ -113,7 +113,7 @@ for i in idxs:
 	cv2.waitKey(0)
 
 
-    # To get face recognition predictions run the following code in cmd:
-    # python lbp_face_recog_tuned.py --input "D:\Projects\security_camera_face_recognition\Security_Camera_Face_Recognition\face_recognition\datasets\caltech_faces_full" -d face_detector 
-	# -rs "D:/Projects/security_camera_face_recognition/Security_Camera_Face_Recognition/face_recognition/LBP_face_recog/output/recognizer.pickle" 
-	# -les "D:/Projects/security_camera_face_recognition/Security_Camera_Face_Recognition/face_recognition/LBP_face_recog/output/label_encoder.pickle"
+# To get face recognition predictions run the following code in cmd:
+# python lbp_face_recog_tuned.py --input "D:\Projects\security_camera_face_recognition\Security_Camera_Face_Recognition\face_recognition\datasets\caltech_faces_full" -d face_detector 
+# -rs "D:/Projects/security_camera_face_recognition/Security_Camera_Face_Recognition/face_recognition/LBP_face_recog/output/recognizer.yml" 
+# -les "D:/Projects/security_camera_face_recognition/Security_Camera_Face_Recognition/face_recognition/LBP_face_recog/output/label_encoder.pickle"
