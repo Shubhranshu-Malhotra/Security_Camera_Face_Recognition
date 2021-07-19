@@ -42,11 +42,11 @@ def load_face_dataset(inputPath, net, minConfidence=0.5, minSamples=15):
 	# structure, and count the number of example images we have per
 	# face
 	imagePaths = list(paths.list_images(inputPath))
-	print(imagePaths[:25])
+	# print(imagePaths[:25])
 	names = [p.split(os.path.sep)[-2] for p in imagePaths]
 	(names, counts) = np.unique(names, return_counts=True)
 	names = names.tolist()
-	print(names[:25], counts)
+	# print(names[:25], counts)
 	# initialize lists to store our extracted faces and associated
 	# labels
 	faces = []

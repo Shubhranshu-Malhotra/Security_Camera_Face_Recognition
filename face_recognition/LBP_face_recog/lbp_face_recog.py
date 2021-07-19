@@ -37,11 +37,11 @@ print("[INFO] {} images in dataset".format(len(faces)))
 le = LabelEncoder()
 labels = le.fit_transform(labels)
 # construct our training and testing split
-(trainX, testX, trainY, testY) = train_test_split(faces, labels, test_size=0.25, stratify=labels, random_state=42)
+(trainX, testX, trainY, testY) = train_test_split(faces, labels, test_size=0.2, stratify=labels, random_state=42)
 
 # train our LBP face recognizer
 print("[INFO] training face recognizer...")
-recognizer = cv2.face.LBPHFaceRecognizer_create(radius=2, neighbors=16, grid_x=8, grid_y=8)
+recognizer = cv2.face.LBPHFaceRecognizer_create(radius=2, neighbors=8, grid_x=6, grid_y=6)
 start = time.time()
 recognizer.train(trainX, trainY)
 end = time.time()
@@ -61,7 +61,7 @@ for i in range(0, len(testX)):
 	confidence.append(conf)
 # measure how long making predictions took
 end = time.time()
-print("[INFO] inference took {:.4f} seconds".format(end - start))
+print("[INFO] inference on {} images took {:.4f} seconds".format(len(testX), end - start))
 # show the classification report
 print(classification_report(testY, predictions, target_names=le.classes_))
 
@@ -92,4 +92,4 @@ for i in idxs:
 
 
     # To get face recognition predictions run the following code in cmd:
-    # python lbp_face_reco.py --input caltech_faces -d face_detector
+    # python lbp_face_recog.py --input "D:\Projects\security_camera_face_recognition\Security_Camera_Face_Recognition\face_recognition\datasets\caltech_faces_full" -d face_detector
