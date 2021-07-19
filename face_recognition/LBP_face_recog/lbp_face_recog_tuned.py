@@ -9,6 +9,7 @@ import imutils
 import time
 import cv2
 import os
+import pickle
 
 print("Imports Successful!!")
 
@@ -21,6 +22,10 @@ ap.add_argument("-d", "--detector", type=str,
 	help="path to face detector model directory")
 ap.add_argument("-c", "--confidence", type=float, default=0.5,
 	help="minimum probability to filter weak detections")
+ap.add_argument("-rs", "--recognizer_save", type=str, default="trained_recognizer.pickle",
+	help="path to save trained recognizer")
+ap.add_argument("-les", "--label_encoder_save", type=str, default="label_encoder.pickle",
+	help="path to save fit label encoder")
 args = vars(ap.parse_args())
 
 # load our serialized face detector model from disk
@@ -28,6 +33,10 @@ print("[INFO] loading face detector model...")
 prototxtPath = os.path.sep.join([args["detector"], "deploy.prototxt"])
 weightsPath = os.path.sep.join([args["detector"], "res10_300x300_ssd_iter_140000.caffemodel"])
 net = cv2.dnn.readNet(prototxtPath, weightsPath)
+
+# Loading save paths
+recognizer_save_path = args["recognizer_save"]
+label_encoder_save_path = args["label_encoder_save"]
 
 # load the CALTECH faces dataset
 print("[INFO] loading dataset...")
@@ -44,11 +53,21 @@ labels = le.fit_transform(labels)
 
 # train our LBP face recognizer
 print("[INFO] training face recognizer...")
-recognizer = cv2.face.LBPHFaceRecognizer_create(radius=2, neighbors=16, grid_x=8, grid_y=8)
+recognizer = cv2.face.LBPHFaceRecognizer_create(radius=2, neighbors=8, grid_x=6, grid_y=6)
 start = time.time()
 recognizer.train(trainX, trainY)
 end = time.time()
 print("[INFO] training took {:.4f} seconds".format(end - start))
+
+# Save trained recognizer and label encoder
+print("[INFO] Saving the trained recognizer and label encoder.")
+# save the actual face recognition model to disk
+recognizer.save(recognizer_save_path)
+# write the label encoder to disk
+f = open(label_encoder_save_path, "wb")
+f.write(pickle.dumps(le))
+f.close()
+
 
 # initialize the list of predictions and confidence scores
 print("[INFO] gathering predictions...")
@@ -95,4 +114,6 @@ for i in idxs:
 
 
     # To get face recognition predictions run the following code in cmd:
-    # python lbp_face_recog.py --input "D:\Projects\security_camera_face_recognition\Security_Camera_Face_Recognition\face_recognition\datasets\caltech_faces_full" -d face_detector
+    # python lbp_face_recog_tuned.py --input "D:\Projects\security_camera_face_recognition\Security_Camera_Face_Recognition\face_recognition\datasets\caltech_faces_full" -d face_detector 
+	# -rs "D:/Projects/security_camera_face_recognition/Security_Camera_Face_Recognition/face_recognition/LBP_face_recog/output/recognizer.pickle" 
+	# -les "D:/Projects/security_camera_face_recognition/Security_Camera_Face_Recognition/face_recognition/LBP_face_recog/output/label_encoder.pickle"
