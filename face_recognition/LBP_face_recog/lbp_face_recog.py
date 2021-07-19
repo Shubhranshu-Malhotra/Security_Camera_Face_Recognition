@@ -31,7 +31,10 @@ net = cv2.dnn.readNet(prototxtPath, weightsPath)
 
 # load the CALTECH faces dataset
 print("[INFO] loading dataset...")
+start = time.time()
 (faces, labels) = load_face_dataset(args["input"], net, minConfidence=0.5, minSamples=20)
+end = time.time()
+print("[INFO] Detecting faces took {:.4f} seconds".format(end - start))
 print("[INFO] {} images in dataset".format(len(faces)))
 # encode the string labels as integers
 le = LabelEncoder()

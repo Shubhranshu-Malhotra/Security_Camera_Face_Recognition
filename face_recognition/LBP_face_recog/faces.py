@@ -46,7 +46,7 @@ def load_face_dataset(inputPath, net, minConfidence=0.5, minSamples=15):
 	names = [p.split(os.path.sep)[-2] for p in imagePaths]
 	(names, counts) = np.unique(names, return_counts=True)
 	names = names.tolist()
-	# print(names[:25], counts)
+	print("{} different people's faces. \n People names: {}".format(len(names), names))
 	# initialize lists to store our extracted faces and associated
 	# labels
 	faces = []
